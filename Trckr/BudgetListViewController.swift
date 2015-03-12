@@ -1,38 +1,25 @@
 //
-//  MasterViewController.swift
+//  BudgetListViewController.swift
 //  Trckr
 //
-//  Created by Heiko Dreyer on 12.03.15.
+//  Created by Heiko Dreyer on 03/12/15.
 //  Copyright (c) 2015 boxedfolder.com. All rights reserved.
 //
 
 import UIKit
 
-class MasterViewController: UITableViewController {
-
-    var detailViewController: DetailViewController? = nil
+class BudgetListViewController: UITableViewController {
     var objects = [AnyObject]()
-
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            self.clearsSelectionOnViewWillAppear = false
-            self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
-        }
-    }
-
+    
+    // MARK: - View related
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        tableView.registerClass(ExpenseItemViewCellTableViewCell.self, forCellReuseIdentifier: "Cell")
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertExpense:")
         self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,24 +27,18 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
-
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as NSDate
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
-        }
+       
+    }
+    
+    // MARK: - Action
+    
+    func insertExpense(sender: AnyObject) {
+        objects.insert(NSDate(), atIndex: 0)
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 
     // MARK: - Table View
