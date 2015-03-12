@@ -14,16 +14,25 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor(red: 0.132, green: 0.122, blue: 0.132, alpha: 1.0)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.font = UIFont(name: "Avenir", size: 18)
+        label.font = UIFont(name: "Avenir", size: 15)
         return label
     }()
     
     lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.font = UIFont(name: "Avenir-Light", size: 14)
+        label.font = UIFont(name: "Avenir-Light", size: 11)
         label.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
+        return label
+    }()
+    
+    lazy var amountLabel: UILabel = {
+        let label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.font = UIFont(name: "Avenir-Heavy", size: 15)
+        label.textColor = AppDelegate.Colors.Green
         label.textAlignment = .Right
         return label
     }()
@@ -31,16 +40,8 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
     lazy var lineView: UIView = {
         let view = UIView()
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1)
-        return view
-    }()
-    
-    lazy var circleView: UIView = {
-        let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.backgroundColor = UIColor.whiteColor()
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 7
+        view.backgroundColor = UIColor(red: 0.932, green: 0.921, blue: 0.932, alpha: 1)
+        view.alpha = 0.25
         return view
     }()
     
@@ -51,22 +52,20 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(amountLabel)
         contentView.addSubview(lineView)
-        contentView.addSubview(circleView)
         
-        let metrics = ["margin": 10, "leftMargin": 14, "lineMargin": 12]
-        let views = ["titleLabel": titleLabel, "dateLabel": dateLabel, "lineView": lineView, "circleView": circleView];
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[dateLabel(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(margin)-[titleLabel]-(margin)-|", options: nil, metrics: metrics, views: views))
+        let metrics = ["topMargin": 20, "bottomMargin": 15,"leftMargin": 14, "lineMargin": 12]
+        let views = ["titleLabel": titleLabel, "amountLabel": amountLabel, "lineView": lineView, "dateLabel": dateLabel];
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[amountLabel(70)]-(lineMargin)-[lineView(15)]-(lineMargin)-[dateLabel]-|", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[amountLabel(70)]-(lineMargin)-[lineView(15)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(topMargin)-[titleLabel]-[dateLabel(10)]-(bottomMargin)-|", options: nil, metrics: metrics, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[lineView]|", options: nil, metrics: metrics, views: views))
-        contentView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: dateLabel, attribute: .CenterY, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterX, relatedBy: .Equal, toItem: lineView, attribute: .CenterX, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterY, relatedBy: .Equal, toItem: titleLabel, attribute: .CenterY, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
-        contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
-
         
-        selectionStyle = .Gray;
+        contentView.addConstraint(NSLayoutConstraint(item: amountLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: titleLabel, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+        
+        
+        selectionStyle = .None;
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -78,5 +77,10 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func setColor(color: UIColor) {
+        lineView.backgroundColor = color;
+        amountLabel.textColor = color
     }
 }

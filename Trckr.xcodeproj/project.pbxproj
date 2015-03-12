@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		602095EF1AB22D5B00B66725 /* ExpenseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602095EE1AB22D5B00B66725 /* ExpenseHeaderView.swift */; };
 		605CAFCF1AB1E838001A1D95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605CAFCE1AB1E838001A1D95 /* AppDelegate.swift */; };
 		605CAFD11AB1E838001A1D95 /* BudgetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605CAFD01AB1E838001A1D95 /* BudgetListViewController.swift */; };
 		605CAFD81AB1E838001A1D95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605CAFD71AB1E838001A1D95 /* Images.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		602095EE1AB22D5B00B66725 /* ExpenseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseHeaderView.swift; sourceTree = "<group>"; };
 		605CAFC91AB1E838001A1D95 /* Trckr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trckr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		605CAFCD1AB1E838001A1D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		605CAFCE1AB1E838001A1D95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				605CAFF31AB1EE8A001A1D95 /* ExpenseItemViewCellTableViewCell.swift */,
+				602095EE1AB22D5B00B66725 /* ExpenseHeaderView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				605CAFF41AB1EE8A001A1D95 /* ExpenseItemViewCellTableViewCell.swift in Sources */,
 				605CAFD11AB1E838001A1D95 /* BudgetListViewController.swift in Sources */,
+				602095EF1AB22D5B00B66725 /* ExpenseHeaderView.swift in Sources */,
 				605CAFCF1AB1E838001A1D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +412,7 @@
 				605CAFEC1AB1E838001A1D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		605CAFED1AB1E838001A1D95 /* Build configuration list for PBXNativeTarget "TrckrTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +421,7 @@
 				605CAFEF1AB1E838001A1D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
