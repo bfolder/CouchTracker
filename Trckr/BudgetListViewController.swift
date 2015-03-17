@@ -58,6 +58,11 @@ class BudgetListViewController: UITableViewController {
         
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { action in
+            let titleTextfield: UITextField = alertController.textFields![0] as UITextField
+            let amountTextfield: UITextField = alertController.textFields![1] as UITextField
+            
+            print(titleTextfield.text + " : " + amountTextfield.text)
+            
             // TODO: implement shit
         }
         okAction.enabled = false
@@ -77,7 +82,6 @@ class BudgetListViewController: UITableViewController {
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                 if let textfield: UITextField = notification.object as UITextField! {
-                    print(textfield.text)
                     if (textfield.text != nil && (wSelf!.numberFormatter.numberFromString(textfield.text)) != nil) {
                         okAction.enabled = true
                     } else {
