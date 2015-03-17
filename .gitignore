@@ -1,2 +1,3 @@
 .DS_Store
 CouchbaseLite.framework
+CouchbaseLite.framework/**
