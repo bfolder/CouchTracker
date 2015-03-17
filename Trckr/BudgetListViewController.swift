@@ -21,6 +21,13 @@ class BudgetListViewController: UITableViewController {
         return label
     }()
     
+    lazy var numberFormatter: NSNumberFormatter = {
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.locale = NSLocale.currentLocale();
+        numberFormatter.numberStyle = .DecimalStyle
+        return numberFormatter
+    }()
+    
     // MARK: - View related
     
     override func viewDidLoad() {
@@ -47,9 +54,42 @@ class BudgetListViewController: UITableViewController {
     // MARK: - Action
     
     func insertExpense(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        let alertController = UIAlertController(title: "Add Expense", message: "Add a new expense", preferredStyle: .Alert)
+        
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) { action in
+            // TODO: implement shit
+        }
+        okAction.enabled = false
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Destructive) { _ in }
+        alertController.addAction(cancelAction)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Title"
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Amount"
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            weak var wSelf = self
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                if let textfield: UITextField = notification.object as UITextField! {
+                    print(textfield.text)
+                    if (textfield.text != nil && (wSelf!.numberFormatter.numberFromString(textfield.text)) != nil) {
+                        okAction.enabled = true
+                    } else {
+                        okAction.enabled = false
+                    }
+                }
+                
+            }
+        }
+        
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Table View

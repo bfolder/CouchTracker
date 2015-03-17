@@ -2,16 +2,13 @@
 //  ExpenseHeaderView.swift
 //  Trckr
 //
-//  Created by Heiko Dreyer on 12.03.15.
+//  Created by Heiko Dreyer on 03/12/15.
 //  Copyright (c) 2015 boxedfolder.com. All rights reserved.
 //
 
 import UIKit
 
 class ExpenseHeaderView: UIView {
-    
-    // MARK: - Properties
-    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
