@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6035ED6C1AB8608A000539BF /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED6A1AB8608A000539BF /* CouchbaseLite.framework */; };
 		6035ED6D1AB8608A000539BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6035ED6B1AB8608A000539BF /* Info.plist */; };
 		6035ED731AB860AC000539BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6035ED721AB860AC000539BF /* Images.xcassets */; };
 		6035ED751AB860B6000539BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED741AB860B6000539BF /* AppDelegate.swift */; };
@@ -16,6 +15,13 @@
 		6035ED7B1AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED791AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift */; };
 		6035ED7D1AB86114000539BF /* CouchTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED7C1AB86114000539BF /* CouchTrackerTests.swift */; };
 		6035ED7F1AB86125000539BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6035ED7E1AB86125000539BF /* Info.plist */; };
+		6035ED821AB8620D000539BF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED811AB8620D000539BF /* CFNetwork.framework */; };
+		6035ED841AB86215000539BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED831AB86215000539BF /* Security.framework */; };
+		6035ED861AB8621B000539BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED851AB8621B000539BF /* SystemConfiguration.framework */; };
+		6035ED881AB86223000539BF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED871AB86223000539BF /* libsqlite3.dylib */; };
+		6035ED8A1AB8622B000539BF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6035ED891AB8622B000539BF /* libz.dylib */; };
+		60D433BB1AB8637600B581BB /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D433BA1AB8637600B581BB /* CouchbaseLite.framework */; };
+		60D433BC1AB8637600B581BB /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D433BA1AB8637600B581BB /* CouchbaseLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6035ED6A1AB8608A000539BF /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = CouchTracker/CouchbaseLite.framework; sourceTree = SOURCE_ROOT; };
 		6035ED6B1AB8608A000539BF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CouchTracker/Info.plist; sourceTree = SOURCE_ROOT; };
 		6035ED721AB860AC000539BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CouchTracker/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		6035ED741AB860B6000539BF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CouchTracker/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -38,8 +43,15 @@
 		6035ED791AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpenseItemViewCellTableViewCell.swift; path = CouchTracker/ExpenseItemViewCellTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		6035ED7C1AB86114000539BF /* CouchTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CouchTrackerTests.swift; path = CouchTrackerTests/CouchTrackerTests.swift; sourceTree = SOURCE_ROOT; };
 		6035ED7E1AB86125000539BF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CouchTrackerTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		6035ED811AB8620D000539BF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6035ED831AB86215000539BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6035ED851AB8621B000539BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6035ED871AB86223000539BF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6035ED891AB8622B000539BF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		605CAFC91AB1E838001A1D95 /* CouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		605CAFE01AB1E838001A1D95 /* CouchTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60D433BA1AB8637600B581BB /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = SOURCE_ROOT; };
+		60D433BD1AB8648900B581BB /* CouchbaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchbaseBridgingHeader.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +59,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6035ED6C1AB8608A000539BF /* CouchbaseLite.framework in Frameworks */,
+				6035ED8A1AB8622B000539BF /* libz.dylib in Frameworks */,
+				6035ED881AB86223000539BF /* libsqlite3.dylib in Frameworks */,
+				6035ED861AB8621B000539BF /* SystemConfiguration.framework in Frameworks */,
+				6035ED841AB86215000539BF /* Security.framework in Frameworks */,
+				60D433BB1AB8637600B581BB /* CouchbaseLite.framework in Frameworks */,
+				6035ED821AB8620D000539BF /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,12 +72,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D433BC1AB8637600B581BB /* CouchbaseLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6035ED801AB861E9000539BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60D433BA1AB8637600B581BB /* CouchbaseLite.framework */,
+				6035ED891AB8622B000539BF /* libz.dylib */,
+				6035ED871AB86223000539BF /* libsqlite3.dylib */,
+				6035ED851AB8621B000539BF /* SystemConfiguration.framework */,
+				6035ED831AB86215000539BF /* Security.framework */,
+				6035ED811AB8620D000539BF /* CFNetwork.framework */,
+				60D433BD1AB8648900B581BB /* CouchbaseBridgingHeader.h */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		605CAFC01AB1E838001A1D95 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +116,7 @@
 			children = (
 				605CAFF01AB1EA97001A1D95 /* Classes */,
 				6035ED721AB860AC000539BF /* Images.xcassets */,
+				6035ED801AB861E9000539BF /* Frameworks */,
 				605CAFCC1AB1E838001A1D95 /* Supporting Files */,
 			);
 			name = CouchTracker;
@@ -93,7 +126,6 @@
 		605CAFCC1AB1E838001A1D95 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6035ED6A1AB8608A000539BF /* CouchbaseLite.framework */,
 				6035ED6B1AB8608A000539BF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -357,10 +389,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CouchTracker",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CouchTracker;
+				SWIFT_OBJC_BRIDGING_HEADER = CouchbaseBridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -372,10 +406,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CouchTracker",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CouchTracker;
+				SWIFT_OBJC_BRIDGING_HEADER = CouchbaseBridgingHeader.h;
 			};
 			name = Release;
 		};
@@ -387,6 +423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -395,6 +432,7 @@
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CouchTrackerTests;
+				SWIFT_OBJC_BRIDGING_HEADER = CouchbaseBridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
 			};
@@ -408,10 +446,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CouchTrackerTests;
+				SWIFT_OBJC_BRIDGING_HEADER = CouchbaseBridgingHeader.h;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.ap/CouchTracker";
 			};
 			name = Release;

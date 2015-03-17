@@ -9,6 +9,9 @@
 import UIKit
 
 class BudgetListViewController: UITableViewController {
+    var database: CBLDatabase!
+    var manager: CBLManager!
+    
     var objects = [AnyObject]()
     
     lazy var backgroundView: UIView = {
@@ -54,7 +57,6 @@ class BudgetListViewController: UITableViewController {
     
     func insertExpense(sender: AnyObject) {
         let alertController = UIAlertController(title: "Add Expense", message: "Add a new expense", preferredStyle: .Alert)
-        
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { action in
             let titleTextfield: UITextField = alertController.textFields![0] as UITextField
