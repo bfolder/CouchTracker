@@ -56,7 +56,7 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     
     // MARK: - Data
     
-    private func loadData() {
+    func loadData() {
         _tableViewSource = CBLUITableSource()
         _tableViewSource.tableView = tableView
         tableView.dataSource = _tableViewSource
@@ -86,7 +86,7 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         dataSource?.query = liveQuery
     }
     
-    private func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
+    func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
         let expense = Expense(newDocumentInDatabase: database)
         expense.title = title
         expense.amount = numberFormatter.numberFromString(amount)
@@ -98,7 +98,7 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         }
     }
     
-    private func allTimeAmount() -> Double {
+    func allTimeAmount() -> Double {
         if self.query != nil {
             let enumerator = self.query.run(nil)
             return enumerator.rowAtIndex(0).value as Double
@@ -109,7 +109,7 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     
     // MARK: - Action
     
-    private func insertExpense(sender: AnyObject) {
+    func insertExpense(sender: AnyObject) {
         weak var wSelf = self
         let alertController = UIAlertController(title: "Add Expense", message: "Add a new expense", preferredStyle: .Alert)
         
@@ -177,7 +177,6 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            //objects.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -191,7 +190,17 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     // MARK: - Couch Table View
     
     func couchTableSource(source: CBLUITableSource!, updateFromQuery query: CBLLiveQuery!, previousRows: [AnyObject]!) {
-        tableView.reloadData()
+        tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
+    
+    func couchTableSource(source: CBLUITableSource!, deleteRow row: CBLQueryRow!) -> Bool {
+        if let document = row.document {
+            if let expense = Expense(forDocument: document) {
+                return expense.deleteDocument(nil)
+            }
+        }
+        
+        return false
     }
     
     func couchTableSource(source: CBLUITableSource!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {

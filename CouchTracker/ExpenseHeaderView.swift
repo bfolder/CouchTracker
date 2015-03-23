@@ -32,7 +32,7 @@ class ExpenseHeaderView: UIView {
     lazy var lineView: UIView = {
         let view = UIView()
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.806, green: 0.814, blue: 0.818, alpha: 1)
         return view
     }()
     
