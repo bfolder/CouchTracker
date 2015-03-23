@@ -10,13 +10,19 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
-    let databaseName = "expenses"
-    let manager: CBLManager =  CBLManager.sharedInstance()
+    let databaseName = "couch-tracker"
     
-    lazy var database: CBLDatabase = {
-        return self.manager.databaseNamed(self.databaseName, error: nil)
-    }()
+    let database: CBLDatabase!
+    var document: CBLDocument!
     
+    override init() {
+        var error: NSError?
+        database = CBLManager.sharedInstance().databaseNamed(databaseName, error: &error)
+        
+        if(error != nil) {
+            print("Error initializing the Database: " + error!.description)
+        }
+    }
     
     struct Colors {
         static let Green = UIColor(red: 0.572, green: 0.764, blue: 0.286, alpha: 1.0)
@@ -29,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let budgetListViewController = BudgetListViewController()
         budgetListViewController.database = database
-        budgetListViewController.manager = manager
         window!.rootViewController = UINavigationController(rootViewController: budgetListViewController);
         window!.tintColor = Colors.Green
         window!.backgroundColor = UIColor.whiteColor()

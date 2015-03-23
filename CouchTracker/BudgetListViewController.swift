@@ -8,11 +8,9 @@
 
 import UIKit
 
-class BudgetListViewController: UITableViewController {
+class BudgetListViewController: UITableViewController, CBLUITableDelegate {
+    private var _tableViewSource: CBLUITableSource!
     var database: CBLDatabase!
-    var manager: CBLManager!
-    
-    var objects = [AnyObject]()
     
     lazy var backgroundView: UIView = {
         let label = UILabel()
@@ -47,24 +45,50 @@ class BudgetListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: - Segues
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       
+    // MARK: - Segues & View
+    
+    override func viewWillAppear(animated: Bool) {
+        loadData()
+    }
+    
+    // MARK: - Data
+    
+    func loadData() {
+        _tableViewSource = CBLUITableSource()
+        _tableViewSource.tableView = tableView
+        tableView.dataSource = _tableViewSource
+        
+        if let query: CBLQuery = database?.createAllDocumentsQuery() {
+            let liveQuery = query.asLiveQuery()
+            let dataSource = tableView.dataSource as? CBLUITableSource
+            dataSource?.query = query.asLiveQuery()
+        }
+    }
+    
+    func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
+        let expense = Expense(newDocumentInDatabase: database)
+        expense.title = title
+        expense.amount = numberFormatter.numberFromString(amount)
+        expense.createdAt = createdAt
+        
+        var error: NSError? = nil
+        if(!expense.save(&error)) {
+            print("There was an error saving the object: " + error!.description)
+        }
     }
     
     // MARK: - Action
     
     func insertExpense(sender: AnyObject) {
+        weak var wSelf = self
         let alertController = UIAlertController(title: "Add Expense", message: "Add a new expense", preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { action in
-            let titleTextfield: UITextField = alertController.textFields![0] as UITextField
-            let amountTextfield: UITextField = alertController.textFields![1] as UITextField
-            
-            print(titleTextfield.text + " : " + amountTextfield.text)
-            
-            // TODO: implement shit
+            if let sSelf = wSelf {
+                let titleTextfield: UITextField = alertController.textFields![0] as UITextField
+                let amountTextfield: UITextField = alertController.textFields![1] as UITextField
+                sSelf.insertNewDocument(titleTextfield.text, amount: amountTextfield.text, createdAt: NSDate())
+            }
         }
         okAction.enabled = false
         alertController.addAction(okAction)
@@ -80,7 +104,6 @@ class BudgetListViewController: UITableViewController {
             textField.placeholder = "Amount"
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
             
-            weak var wSelf = self
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                 if let textfield: UITextField = notification.object as UITextField! {
                     okAction.enabled = (textfield.text != nil && (wSelf!.numberFormatter.numberFromString(textfield.text)) != nil)
@@ -89,12 +112,10 @@ class BudgetListViewController: UITableViewController {
             }
         }
         
-        
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Table View
-    
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -105,6 +126,7 @@ class BudgetListViewController: UITableViewController {
         
         return nil
     }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 66;
     }
@@ -116,40 +138,15 @@ class BudgetListViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if objects.count == 0 {
-            tableView.backgroundView = backgroundView
-            backgroundView.frame = tableView.frame
-        } else {
-            tableView.backgroundView = nil
-        }
-        
-        return objects.count
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ExpenseItemViewCellTableViewCell
-        let formatter = NSDateFormatter();
-        formatter.timeStyle = NSDateFormatterStyle.MediumStyle
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        let object = objects[indexPath.row] as NSDate
-        cell.titleLabel.text = object.description
-        cell.dateLabel.text = formatter.stringFromDate(object)
-        cell.amountLabel.text = "23512 $"
-        cell.setColor(AppDelegate.Colors.Green)
-        
-        return cell
-    }
-
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
+            //objects.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -158,6 +155,30 @@ class BudgetListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    // MARK: - Couch Table View
+    
+    func couchTableSource(source: CBLUITableSource!, updateFromQuery query: CBLLiveQuery!, previousRows: [AnyObject]!) {
+        tableView.reloadData()
+    }
+    
+    func couchTableSource(source: CBLUITableSource!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ExpenseItemViewCellTableViewCell
+        let formatter = NSDateFormatter();
+        formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        let document: CBLDocument = source.documentAtIndexPath(indexPath)
+        let model: Expense? = Expense(forDocument: document)
+        cell.titleLabel.text = model?.title
+        cell.amountLabel.text = model?.amount?.stringValue
+        cell.setColor(AppDelegate.Colors.Green)
+        
+        if let date = model?.createdAt {
+            cell.dateLabel.text = formatter.stringFromDate(date)
+        }
+        
+        return cell
     }
 }
 
