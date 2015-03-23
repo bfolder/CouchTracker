@@ -28,9 +28,9 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
     lazy var amountLabel: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.font = UIFont(name: "Avenir-Heavy", size: 15)
+        label.font = UIFont(name: "Avenir-Heavy", size: 13)
         label.textColor = AppDelegate.Colors.Green
-        label.textAlignment = .Right
+        label.textAlignment = .Left
         return label
     }()
     

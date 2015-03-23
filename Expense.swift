@@ -9,11 +9,7 @@
 import Foundation
 
 class Expense: CBLModel {
-    @NSManaged var createdAt: NSDate?
     @NSManaged var title: String?
     @NSManaged var amount: NSNumber?
-    
-    class func docType() -> String {
-        return "Expense"
-    }
+    @NSManaged var createdAt: NSDate?
 }

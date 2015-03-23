@@ -11,6 +11,7 @@ import UIKit
 class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     private var _tableViewSource: CBLUITableSource!
     var database: CBLDatabase!
+    var query: CBLQuery!
     
     lazy var backgroundView: UIView = {
         let label = UILabel()
@@ -27,6 +28,12 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         numberFormatter.locale = NSLocale.currentLocale();
         numberFormatter.numberStyle = .DecimalStyle
         return numberFormatter
+    }()
+    
+    lazy var currencyFormatter: NSNumberFormatter = {
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.numberStyle = .CurrencyStyle
+        return currencyFormatter
     }()
     
     // MARK: - View related
@@ -46,34 +53,40 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    // MARK: - Segues & View
-    
-    override func viewWillAppear(animated: Bool) {
-    }
     
     // MARK: - Data
     
-    func loadData() {
+    private func loadData() {
         _tableViewSource = CBLUITableSource()
         _tableViewSource.tableView = tableView
         tableView.dataSource = _tableViewSource
         let view = database.viewNamed("ExpensesByDate")
-        println(view.mapBlock)
+        
+        // This is our map/reduce code
         if view.mapBlock == nil {
             view.setMapBlock({ (doc, emit) in
-                emit(doc["createdAt"], doc)
-            }, reduceBlock: nil, version: "4")
+                    emit(doc["createdAt"], doc)
+                }, reduceBlock: { (keys, values, rereduce) in
+                    var total: Double = 0.0
+                    let sValues = values as [NSDictionary];
+                    for value in sValues {
+                        if let sValue = value["amount"] as? Double {
+                            total += sValue
+                        }
+                    }
+                    return total
+                }, version: "10")
         }
         
-        let query = view.createQuery()
-        query.descending = true
+        query = view.createQuery()
         let liveQuery = query.asLiveQuery()
         let dataSource = tableView.dataSource as? CBLUITableSource
+        liveQuery.descending = true
+        liveQuery.mapOnly = true
         dataSource?.query = liveQuery
     }
     
-    func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
+    private func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
         let expense = Expense(newDocumentInDatabase: database)
         expense.title = title
         expense.amount = numberFormatter.numberFromString(amount)
@@ -85,9 +98,18 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         }
     }
     
+    private func allTimeAmount() -> Double {
+        if self.query != nil {
+            let enumerator = self.query.run(nil)
+            return enumerator.rowAtIndex(0).value as Double
+        }
+        
+        return 0.0
+    }
+    
     // MARK: - Action
     
-    func insertExpense(sender: AnyObject) {
+    private func insertExpense(sender: AnyObject) {
         weak var wSelf = self
         let alertController = UIAlertController(title: "Add Expense", message: "Add a new expense", preferredStyle: .Alert)
         
@@ -129,6 +151,7 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         if section == 0 {
             let header = ExpenseHeaderView(frame: CGRectZero)
             header.setColor(AppDelegate.Colors.Green)
+            header.amountLabel.text = currencyFormatter.stringFromNumber(allTimeAmount())!;
             return header
         }
         
@@ -179,8 +202,11 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         let document: CBLDocument = source.documentAtIndexPath(indexPath)
         let model: Expense? = Expense(forDocument: document)
         cell.titleLabel.text = model?.title
-        cell.amountLabel.text = model?.amount?.stringValue
         cell.setColor(AppDelegate.Colors.Green)
+        
+        if let amount = model?.amount {
+            cell.amountLabel.text = currencyFormatter.stringFromNumber(amount)!
+        }
         
         if let date = model?.createdAt {
             cell.dateLabel.text = formatter.stringFromDate(date)
