@@ -39,6 +39,8 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertExpense:")
         self.navigationItem.rightBarButtonItem = addButton
+        
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +50,6 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
     // MARK: - Segues & View
     
     override func viewWillAppear(animated: Bool) {
-        loadData()
     }
     
     // MARK: - Data
@@ -57,12 +58,19 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         _tableViewSource = CBLUITableSource()
         _tableViewSource.tableView = tableView
         tableView.dataSource = _tableViewSource
-        
-        if let query: CBLQuery = database?.createAllDocumentsQuery() {
-            let liveQuery = query.asLiveQuery()
-            let dataSource = tableView.dataSource as? CBLUITableSource
-            dataSource?.query = query.asLiveQuery()
+        let view = database.viewNamed("ExpensesByDate")
+        println(view.mapBlock)
+        if view.mapBlock == nil {
+            view.setMapBlock({ (doc, emit) in
+                emit(doc["createdAt"], doc)
+            }, reduceBlock: nil, version: "4")
         }
+        
+        let query = view.createQuery()
+        query.descending = true
+        let liveQuery = query.asLiveQuery()
+        let dataSource = tableView.dataSource as? CBLUITableSource
+        dataSource?.query = liveQuery
     }
     
     func insertNewDocument(title: String, amount: String, createdAt: NSDate) {
