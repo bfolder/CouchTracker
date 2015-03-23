@@ -215,4 +215,3 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         return cell
     }
 }
-

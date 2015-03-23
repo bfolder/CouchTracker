@@ -10,8 +10,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
-    let databaseName = "couch-tracker"
+    struct Colors {
+        static let Green = UIColor(red: 0.572, green: 0.764, blue: 0.286, alpha: 1.0)
+        static let Red = UIColor(red: 0.764, green: 0.286, blue: 0.286, alpha: 1.0)
+    }
     
+    var window: UIWindow?
+    
+    let databaseName = "couch-tracker"
     let database: CBLDatabase!
     var document: CBLDocument!
     
@@ -23,13 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             print("Error initializing the Database: " + error!.description)
         }
     }
-    
-    struct Colors {
-        static let Green = UIColor(red: 0.572, green: 0.764, blue: 0.286, alpha: 1.0)
-        static let Red = UIColor(red: 0.764, green: 0.286, blue: 0.286, alpha: 1.0)
-    }
-    
-    var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -43,4 +42,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return true
     }
 }
-
