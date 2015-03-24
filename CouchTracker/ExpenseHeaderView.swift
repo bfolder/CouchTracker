@@ -24,7 +24,7 @@ class ExpenseHeaderView: UIView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont(name: "Avenir", size: 15)
         label.textColor = UIColor(red: 0.514, green: 0.525, blue: 0.541, alpha: 1)
-        label.text = "32123 $"
+        label.text = "0 $"
         label.textAlignment = .Left
         return label
         }()
