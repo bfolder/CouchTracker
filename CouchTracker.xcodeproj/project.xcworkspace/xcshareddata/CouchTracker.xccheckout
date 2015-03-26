@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1A13266E-EA4A-4D86-BEA6-C2432C8199C4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CouchTracker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D5CE72C77BE64565FC4DB98EFB82C30A959BF799</key>
+		<string>github.com:bfolder/CouchTracker.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CouchTracker.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D5CE72C77BE64565FC4DB98EFB82C30A959BF799</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:bfolder/CouchTracker.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D5CE72C77BE64565FC4DB98EFB82C30A959BF799</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5CE72C77BE64565FC4DB98EFB82C30A959BF799</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CouchTracker</string>
+		</dict>
+	</array>
+</dict>
+</plist>
