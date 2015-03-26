@@ -47,11 +47,11 @@
 		6035ED851AB8621B000539BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6035ED871AB86223000539BF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6035ED891AB8622B000539BF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		605A75641AC461AA0088EE41 /* CouchbaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CouchbaseBridgingHeader.h; path = CouchTracker/CouchbaseBridgingHeader.h; sourceTree = SOURCE_ROOT; };
 		605CAFC91AB1E838001A1D95 /* CouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		605CAFE01AB1E838001A1D95 /* CouchTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		609957AF1AC460E2009E5FF3 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expense.swift; path = CouchTracker/Expense.swift; sourceTree = SOURCE_ROOT; };
 		60D433BA1AB8637600B581BB /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = SOURCE_ROOT; };
-		60D433BD1AB8648900B581BB /* CouchbaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchbaseBridgingHeader.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,13 +82,12 @@
 		6035ED801AB861E9000539BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				60D433BA1AB8637600B581BB /* CouchbaseLite.framework */,
 				6035ED891AB8622B000539BF /* libz.dylib */,
 				6035ED871AB86223000539BF /* libsqlite3.dylib */,
+				60D433BA1AB8637600B581BB /* CouchbaseLite.framework */,
 				6035ED851AB8621B000539BF /* SystemConfiguration.framework */,
 				6035ED831AB86215000539BF /* Security.framework */,
 				6035ED811AB8620D000539BF /* CFNetwork.framework */,
-				60D433BD1AB8648900B581BB /* CouchbaseBridgingHeader.h */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,6 +125,7 @@
 		605CAFCC1AB1E838001A1D95 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				605A75641AC461AA0088EE41 /* CouchbaseBridgingHeader.h */,
 				6035ED6B1AB8608A000539BF /* Info.plist */,
 			);
 			name = "Supporting Files";
