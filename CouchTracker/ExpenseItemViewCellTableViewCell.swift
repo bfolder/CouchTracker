@@ -42,7 +42,7 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
         return view
     }()
     
-    // MARK: - Init
+    // MARK: - Initialiers
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
