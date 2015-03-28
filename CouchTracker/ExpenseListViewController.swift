@@ -1,5 +1,5 @@
 //
-//  BudgetListViewController.swift
+//  ExpenseListViewController.swift
 //  CouchTracker
 //
 //  Created by Heiko Dreyer on 03/12/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BudgetListViewController: UITableViewController, CBLUITableDelegate {
+class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
     private var _tableViewSource: CBLUITableSource!
     var database: CBLDatabase!
     var query: CBLQuery!
@@ -187,11 +187,11 @@ class BudgetListViewController: UITableViewController, CBLUITableDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    // MARK: - Couch Table View
-    
     func couchTableSource(source: CBLUITableSource!, updateFromQuery query: CBLLiveQuery!, previousRows: [AnyObject]!) {
         tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
     }
+    
+    // MARK: - Table View (Couchbase related)
     
     func couchTableSource(source: CBLUITableSource!, deleteRow row: CBLQueryRow!) -> Bool {
         if let document = row.document {

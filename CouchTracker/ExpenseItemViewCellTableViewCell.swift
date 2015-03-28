@@ -70,7 +70,7 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
     }
     
     
-    // MARK: - Selection & Stuff
+    // MARK: - Other accessors
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

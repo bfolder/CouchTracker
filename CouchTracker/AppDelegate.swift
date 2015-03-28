@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let budgetListViewController = BudgetListViewController()
+        let budgetListViewController = ExpenseListViewController()
         budgetListViewController.database = database
         window!.rootViewController = UINavigationController(rootViewController: budgetListViewController);
         window!.tintColor = Colors.Green

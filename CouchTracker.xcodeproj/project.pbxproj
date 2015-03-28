@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6035ED731AB860AC000539BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6035ED721AB860AC000539BF /* Images.xcassets */; };
 		6035ED751AB860B6000539BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED741AB860B6000539BF /* AppDelegate.swift */; };
-		6035ED771AB860C0000539BF /* BudgetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED761AB860C0000539BF /* BudgetListViewController.swift */; };
+		6035ED771AB860C0000539BF /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED761AB860C0000539BF /* ExpenseListViewController.swift */; };
 		6035ED7A1AB860C7000539BF /* ExpenseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED781AB860C7000539BF /* ExpenseHeaderView.swift */; };
 		6035ED7B1AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED791AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift */; };
 		6035ED7D1AB86114000539BF /* CouchTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6035ED7C1AB86114000539BF /* CouchTrackerTests.swift */; };
@@ -37,7 +37,7 @@
 		6035ED6B1AB8608A000539BF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CouchTracker/Info.plist; sourceTree = SOURCE_ROOT; };
 		6035ED721AB860AC000539BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CouchTracker/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		6035ED741AB860B6000539BF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CouchTracker/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		6035ED761AB860C0000539BF /* BudgetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BudgetListViewController.swift; path = CouchTracker/BudgetListViewController.swift; sourceTree = SOURCE_ROOT; };
+		6035ED761AB860C0000539BF /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpenseListViewController.swift; path = CouchTracker/ExpenseListViewController.swift; sourceTree = SOURCE_ROOT; };
 		6035ED781AB860C7000539BF /* ExpenseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpenseHeaderView.swift; path = CouchTracker/ExpenseHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		6035ED791AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpenseItemViewCellTableViewCell.swift; path = CouchTracker/ExpenseItemViewCellTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		6035ED7C1AB86114000539BF /* CouchTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CouchTrackerTests.swift; path = CouchTrackerTests/CouchTrackerTests.swift; sourceTree = SOURCE_ROOT; };
@@ -163,7 +163,7 @@
 		605CAFF11AB1EA9F001A1D95 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				6035ED761AB860C0000539BF /* BudgetListViewController.swift */,
+				6035ED761AB860C0000539BF /* ExpenseListViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 				6035ED7B1AB860C7000539BF /* ExpenseItemViewCellTableViewCell.swift in Sources */,
 				6035ED751AB860B6000539BF /* AppDelegate.swift in Sources */,
 				6035ED7A1AB860C7000539BF /* ExpenseHeaderView.swift in Sources */,
-				6035ED771AB860C0000539BF /* BudgetListViewController.swift in Sources */,
+				6035ED771AB860C0000539BF /* ExpenseListViewController.swift in Sources */,
 				609957B01AC460E2009E5FF3 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
