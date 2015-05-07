@@ -68,7 +68,7 @@ class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
                     emit(doc["createdAt"], doc)
                 }, reduceBlock: { (keys, values, rereduce) in
                     var total: Double = 0.0
-                    let sValues = values as [NSDictionary];
+                    let sValues = values as! [NSDictionary];
                     for value in sValues {
                         if let sValue = value["amount"] as? Double {
                             total += sValue
@@ -101,7 +101,9 @@ class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
     func allTimeAmount() -> Double {
         if self.query != nil {
             let enumerator = self.query.run(nil)
-            return enumerator.rowAtIndex(0).value as Double
+            if enumerator.count > 0 {
+                return enumerator.rowAtIndex(0).value as! Double
+            }
         }
         
         return 0.0
@@ -115,8 +117,8 @@ class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { action in
             if let sSelf = wSelf {
-                let titleTextfield: UITextField = alertController.textFields![0] as UITextField
-                let amountTextfield: UITextField = alertController.textFields![1] as UITextField
+                let titleTextfield: UITextField = alertController.textFields![0] as! UITextField
+                let amountTextfield: UITextField = alertController.textFields![1] as! UITextField
                 sSelf.insertNewDocument(titleTextfield.text, amount: amountTextfield.text, createdAt: NSDate())
             }
         }
@@ -135,7 +137,7 @@ class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                if let textfield: UITextField = notification.object as UITextField! {
+                if let textfield: UITextField = notification.object as! UITextField! {
                     okAction.enabled = (textfield.text != nil && (wSelf!.numberFormatter.numberFromString(textfield.text)) != nil)
                 }
                 
@@ -204,7 +206,7 @@ class ExpenseListViewController: UITableViewController, CBLUITableDelegate {
     }
     
     func couchTableSource(source: CBLUITableSource!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ExpenseItemViewCellTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ExpenseItemViewCellTableViewCell
         let formatter = NSDateFormatter();
         formatter.timeStyle = NSDateFormatterStyle.MediumStyle
         formatter.dateStyle = NSDateFormatterStyle.MediumStyle

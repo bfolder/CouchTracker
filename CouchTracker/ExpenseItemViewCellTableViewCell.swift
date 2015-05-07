@@ -52,7 +52,7 @@ class ExpenseItemViewCellTableViewCell: UITableViewCell {
         contentView.addSubview(amountLabel)
         contentView.addSubview(lineView)
         
-        let metrics = ["topMargin": 20, "bottomMargin": 15,"leftMargin": 14, "lineMargin": 12]
+        let metrics = ["topMargin": 20, "bottomMargin": 10,"leftMargin": 14, "lineMargin": 12]
         let views = ["titleLabel": titleLabel, "amountLabel": amountLabel, "lineView": lineView, "dateLabel": dateLabel];
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[amountLabel(70)]-(lineMargin)-[lineView(15)]-(lineMargin)-[dateLabel]-|", options: nil, metrics: metrics, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[amountLabel(70)]-(lineMargin)-[lineView(15)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
