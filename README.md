@@ -2,6 +2,10 @@
 
 CouchTracker is a Couchbase Lite iOS sample project. It shows how to setup and use couchbase crud operations in the context of an expense tracker.
 
+## Screenshot
+
+![CouchTracker screenshot](/screenshot.png?raw=true "Screenshot")
+
 ## Running the app
 
 1. Clone this repo
